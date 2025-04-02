@@ -44,3 +44,4 @@ public class TransparentModule : MonoBehaviour
         mat.color = target;
     }
 }
+
