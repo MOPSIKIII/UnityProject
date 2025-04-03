@@ -2,24 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SampleScript : MonoBehaviour
-{
-    public abstract void Use();
-}
-
-public class SampleScriptController : MonoBehaviour
-{
-    public List<SampleScript> scripts;
-
-    public void ActivateAll()
-    {
-        foreach (var script in scripts)
-        {
-            script.Use();
-        }
-    }
-}
-
 public class DestroyChildrenScript : SampleScript
 {
     public Transform target;
