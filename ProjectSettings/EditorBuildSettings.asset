@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/LearnScene 2.unity
+    guid: 82e425537f2382a4f917f744cb88176c
+  - enabled: 1
+    path: Assets/ForScriptScene.unity
+    guid: 277f8d55806ee744cadd216bd16cea75
+  - enabled: 0
+    path: Assets/scenes/Mikhail.unity
+    guid: 5fb6d0dc75d654543beb4d39c52c38bf
   m_configObjects: {}

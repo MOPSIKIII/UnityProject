@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
 [HelpURL("https://docs.google.com/document/d/1Cmm__cbik5J8aHAI6PPaAUmEMF3wAcNo3rpgzsYPzDM/edit?usp=sharing")]
 public class TransparentModule : MonoBehaviour
 {
-    private float changeSpeed;
+    [SerializeField, Range(0.1f, 5f)] private float changeSpeed = 1f;
     private float defaultAlpha;
     private Material mat;
     private bool toDefault;
@@ -45,3 +44,4 @@ public class TransparentModule : MonoBehaviour
         mat.color = target;
     }
 }
+
