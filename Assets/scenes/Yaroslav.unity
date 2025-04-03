@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &296708686
 Light:
   m_ObjectHideFlags: 0
@@ -268,6 +268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sofa
       objectReference: {fileID: 0}
+    - target: {fileID: 6226853831219711078, guid: fc47054827a6848e581c489d3636c7d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -289,6 +293,10 @@ PrefabInstance:
     - target: {fileID: 930195825798313799, guid: bdd0eb08e4a8f487fbbd38d08fbfb4f8, type: 3}
       propertyPath: m_Name
       value: Fridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 930195825798313799, guid: bdd0eb08e4a8f487fbbd38d08fbfb4f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8918809267443442900, guid: bdd0eb08e4a8f487fbbd38d08fbfb4f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -387,6 +395,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chair
       objectReference: {fileID: 0}
+    - target: {fileID: 3338749201660445487, guid: 99e92385e0dc64887b4ed58acf1a4b99, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -409,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1571702617
 AudioListener:
   m_ObjectHideFlags: 0
@@ -495,6 +507,10 @@ PrefabInstance:
     - target: {fileID: 52751117449531053, guid: 823664e6bea874443b70a14b9aae385f, type: 3}
       propertyPath: m_Name
       value: Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 52751117449531053, guid: 823664e6bea874443b70a14b9aae385f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7695274589164003425, guid: 823664e6bea874443b70a14b9aae385f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -600,6 +616,10 @@ PrefabInstance:
     - target: {fileID: 2805709585642769027, guid: c5cb4177d20fc4aec99c890dbfee93c8, type: 3}
       propertyPath: m_Name
       value: "\u0421\u0442\u043E\u043B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2805709585642769027, guid: c5cb4177d20fc4aec99c890dbfee93c8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
