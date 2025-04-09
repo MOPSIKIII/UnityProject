@@ -289,8 +289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 73149472}
-  count: 2
-  step: 1
+  count: 3
+  step: 2
   direction: {x: 1, y: 0, z: 0}
   parent: {fileID: 0}
 --- !u!65 &73149474
