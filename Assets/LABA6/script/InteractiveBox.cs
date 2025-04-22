@@ -9,18 +9,16 @@ public class InteractiveBox : MonoBehaviour
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        if (lineRenderer == null)
+            lineRenderer = gameObject.AddComponent<LineRenderer>();
 
-        // Настройка LineRenderer
         lineRenderer.startWidth = 0.05f;
         lineRenderer.endWidth = 0.05f;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
         lineRenderer.startColor = Color.red;
         lineRenderer.endColor = Color.red;
-        lineRenderer.positionCount = 2;
         lineRenderer.useWorldSpace = true;
-
-        // Скрыть линию до появления next
-        lineRenderer.enabled = false;
+        lineRenderer.positionCount = 0;
     }
 
     public void AddNext(InteractiveBox box)
@@ -35,13 +33,8 @@ public class InteractiveBox : MonoBehaviour
         {
             Vector3 start = transform.position;
             Vector3 end = next.transform.position;
-
-            // Отрисовка линии
-            lineRenderer.SetPosition(0, start);
-            lineRenderer.SetPosition(1, end);
-
-            // Проверка попадания в obstacle
             Vector3 direction = end - start;
+
             Ray ray = new Ray(start, direction.normalized);
             RaycastHit hit;
 
@@ -52,13 +45,28 @@ public class InteractiveBox : MonoBehaviour
                 if (obstacle != null)
                 {
                     obstacle.GetDamage(Time.deltaTime);
+
+                    // Вычисляем вход и выход для линии
+                    Vector3 hitPoint = hit.point;
+                    Vector3 obstacleSize = hit.collider.bounds.size;
+                    Vector3 exitPoint = hit.point + direction.normalized * obstacleSize.z;
+
+                    lineRenderer.positionCount = 3;
+                    lineRenderer.SetPosition(0, start);
+                    lineRenderer.SetPosition(1, hitPoint);
+                    lineRenderer.SetPosition(2, exitPoint);
+                    return;
                 }
             }
+
+            // Если нет препятствий — обычная линия
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, start);
+            lineRenderer.SetPosition(1, end);
         }
         else
         {
-            // Скрываем линию, если связи больше нет
-            lineRenderer.enabled = false;
+            lineRenderer.positionCount = 0;
         }
     }
 }
