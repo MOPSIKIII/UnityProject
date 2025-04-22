@@ -27,13 +27,14 @@ public class InteractiveRaycast : MonoBehaviour
 
             if (hitObj.CompareTag("InteractivePlane"))
             {
-                Vector3 offset = hit.normal * 0.5f;
-                Vector3 spawnPos = hit.point + offset;
+                BoxCollider collider = prefab.GetComponent<BoxCollider>();
+                float objectHeight = (collider != null) ? collider.size.y : 1.0f; // Если нет коллайдера, устанавливаем высоту по умолчанию
 
-                spawnPos = new Vector3(
-                    Mathf.Round(spawnPos.x),
-                    Mathf.Round(spawnPos.y),
-                    Mathf.Round(spawnPos.z)
+                // Находим позицию для спавна с учетом высоты объекта
+                Vector3 spawnPos = new Vector3(
+                    Mathf.Round(hit.point.x),
+                    hit.point.y + objectHeight / 2, // Смещаем вверх на половину высоты
+                    Mathf.Round(hit.point.z)
                 );
 
                 Instantiate(prefab, spawnPos, Quaternion.identity);

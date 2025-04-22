@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InteractiveBox : MonoBehaviour
 {
-    private InteractiveBox next;
+    public InteractiveBox next;
 
     public void AddNext(InteractiveBox box)
     {
