@@ -47,6 +47,7 @@ public class InteractiveBox : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, direction.magnitude))
             {
+                Debug.Log("hit");
                 ObstacleItem obstacle = hit.collider.GetComponent<ObstacleItem>();
                 if (obstacle != null)
                 {
