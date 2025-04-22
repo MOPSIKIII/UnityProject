@@ -4,16 +4,26 @@ using UnityEngine.Events;
 public class ObstacleMem : MonoBehaviour
 {
     [Header("Настройки")]
+<<<<<<< Updated upstream
     [Range(0, 1)] public float health = 1f;
     public float colorChangeSpeed = 3f;
     public float shrinkSpeed = 1f;
+=======
+    [Range(0, 1)] public float health = 1f; // переименовал currentVolume в health для ясности
+    public float colorChangeSpeed = 3f; // отдельная скорость для изменения цвета
+    public float shrinkSpeed = 1f; // скорость уменьшения объекта
+>>>>>>> Stashed changes
 
     [Header("События")]
     public UnityEvent onDestroyObstacles;
 
     private Material objectMaterial;
     private bool isDestroying = false;
+<<<<<<< Updated upstream
     private float displayedHealth;
+=======
+    private float displayedHealth; // текущее отображаемое значение здоровья
+>>>>>>> Stashed changes
 
     void Start()
     {
@@ -24,6 +34,18 @@ public class ObstacleMem : MonoBehaviour
 
     void Update()
     {
+<<<<<<< Updated upstream
+=======
+        // Плавная корректировка отображаемого здоровья
+        displayedHealth = Mathf.MoveTowards(
+            displayedHealth,
+            health,
+            colorChangeSpeed * Time.deltaTime
+        );
+
+        UpdateColor();
+
+>>>>>>> Stashed changes
         if (isDestroying)
         {
             // Анимация уменьшения
@@ -32,12 +54,16 @@ public class ObstacleMem : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+<<<<<<< Updated upstream
             return;
         }
 
         // Плавное изменение цвета
         displayedHealth = Mathf.MoveTowards(displayedHealth, health, colorChangeSpeed * Time.deltaTime);
         UpdateColor();
+=======
+        }
+>>>>>>> Stashed changes
     }
 
     public void GetDamage(float damage)
@@ -48,6 +74,7 @@ public class ObstacleMem : MonoBehaviour
 
         if (health <= 0)
         {
+<<<<<<< Updated upstream
             // Мгновенно устанавливаем красный цвет
             displayedHealth = 0f;
             UpdateColor();
@@ -55,6 +82,9 @@ public class ObstacleMem : MonoBehaviour
             // Запускаем уничтожение
             isDestroying = true;
             onDestroyObstacles.Invoke();
+=======
+            StartDestroy();
+>>>>>>> Stashed changes
         }
     }
 
@@ -63,6 +93,15 @@ public class ObstacleMem : MonoBehaviour
         objectMaterial.color = Color.Lerp(Color.red, Color.white, displayedHealth);
     }
 
+<<<<<<< Updated upstream
+=======
+    void StartDestroy()
+    {
+        isDestroying = true;
+        onDestroyObstacles.Invoke();
+    }
+
+>>>>>>> Stashed changes
     void OnDestroy()
     {
         if (objectMaterial != null)
