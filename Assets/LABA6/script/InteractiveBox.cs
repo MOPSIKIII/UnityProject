@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(LineRenderer))]
 public class InteractiveBox : MonoBehaviour
 {
     private InteractiveBox next;
@@ -8,24 +9,24 @@ public class InteractiveBox : MonoBehaviour
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        if (lineRenderer == null)
-        {
-            lineRenderer = gameObject.AddComponent<LineRenderer>();
-        }
 
-        // Настройка по умолчанию
+        // Настройка LineRenderer
         lineRenderer.startWidth = 0.05f;
         lineRenderer.endWidth = 0.05f;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        lineRenderer.startColor = Color.green;
-        lineRenderer.endColor = Color.green;
+        lineRenderer.startColor = Color.red;
+        lineRenderer.endColor = Color.red;
         lineRenderer.positionCount = 2;
         lineRenderer.useWorldSpace = true;
+
+        // Скрыть линию до появления next
+        lineRenderer.enabled = false;
     }
 
     public void AddNext(InteractiveBox box)
     {
         next = box;
+        lineRenderer.enabled = true;
     }
 
     private void Update()
@@ -35,7 +36,7 @@ public class InteractiveBox : MonoBehaviour
             Vector3 start = transform.position;
             Vector3 end = next.transform.position;
 
-            // Обновляем LineRenderer
+            // Отрисовка линии
             lineRenderer.SetPosition(0, start);
             lineRenderer.SetPosition(1, end);
 
@@ -55,9 +56,8 @@ public class InteractiveBox : MonoBehaviour
         }
         else
         {
-            // Скрываем линию, если нет next
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, transform.position);
+            // Скрываем линию, если связи больше нет
+            lineRenderer.enabled = false;
         }
     }
 }
