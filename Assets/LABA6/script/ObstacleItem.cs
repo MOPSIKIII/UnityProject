@@ -12,12 +12,14 @@ public class ObstacleItem : MonoBehaviour
     public UnityEvent onDestroyObstacles;
 
     private Material objectMaterial;
-    private bool isDestroying = false;
+    private Renderer[] renderers;
+    public bool isDestroying = false;
     private float displayedHealth;
 
     void Start()
     {
         objectMaterial = GetComponent<Renderer>().material;
+        renderers = GetComponentsInChildren<Renderer>();
         displayedHealth = health;
         UpdateColor();
     }
@@ -58,6 +60,13 @@ public class ObstacleItem : MonoBehaviour
     void UpdateColor()
     {
         objectMaterial.color = Color.Lerp(Color.red, Color.white, displayedHealth);
+        if (renderers.Length != 0)
+        {
+            foreach (Renderer renderMaterial in renderers)
+            {
+                renderMaterial.material.color = Color.Lerp(Color.red, Color.white, displayedHealth);
+            }
+        }
     }
 
     void OnDestroy()

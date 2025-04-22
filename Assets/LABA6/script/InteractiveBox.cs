@@ -33,33 +33,29 @@ public class InteractiveBox : MonoBehaviour
         {
             Vector3 start = transform.position;
             Vector3 end = next.transform.position;
-            Vector3 direction = end - start;
+            Vector3 direction = (end - start).normalized;
+            float distance = Vector3.Distance(start, end);
 
-            Ray ray = new Ray(start, direction.normalized);
+            Ray ray = new Ray(start, direction);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, direction.magnitude))
+            if (Physics.Raycast(ray, out hit, distance))
             {
-                Debug.Log("hit");
                 ObstacleItem obstacle = hit.collider.GetComponent<ObstacleItem>();
-                if (obstacle != null)
+                if (obstacle != null && !obstacle.isDestroying)
                 {
+                    // Наносим урон
                     obstacle.GetDamage(Time.deltaTime);
 
-                    // Вычисляем вход и выход для линии
-                    Vector3 hitPoint = hit.point;
-                    Vector3 obstacleSize = hit.collider.bounds.size;
-                    Vector3 exitPoint = hit.point + direction.normalized * obstacleSize.z;
-
-                    lineRenderer.positionCount = 3;
+                    // Рисуем луч до препятствия
+                    lineRenderer.positionCount = 2;
                     lineRenderer.SetPosition(0, start);
-                    lineRenderer.SetPosition(1, hitPoint);
-                    lineRenderer.SetPosition(2, exitPoint);
+                    lineRenderer.SetPosition(1, hit.point);
                     return;
                 }
             }
 
-            // Если нет препятствий — обычная линия
+            // Если нет препятствий — рисуем до next
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, start);
             lineRenderer.SetPosition(1, end);
